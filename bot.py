@@ -11,13 +11,12 @@ import asyncio
 import datetime
 import aiofiles
 from random import choice
+from configs import Config
+from database import Database
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
-from configs import Config
-from database import Database
-
 ## --- Sub Configs --- ##
 BOT_USERNAME = Config.BOT_USERNAME
 BOT_TOKEN = Config.BOT_TOKEN
@@ -77,7 +76,7 @@ async def start(bot, cmd):
 					reply_markup=InlineKeyboardMarkup(
 						[
 							[
-								InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
+								InlineKeyboardButton("🤖 Join MEMES Channel", url=invite_link.invite_link)
 							],
 							[
 								InlineKeyboardButton("🔄 Refresh 🔄", callback_data="refreshmeh")
@@ -133,7 +132,7 @@ async def start(bot, cmd):
 					reply_markup=InlineKeyboardMarkup(
 						[
 							[
-								InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
+								InlineKeyboardButton("🤖 Join MEMES Channel", url=invite_link.invite_link)
 							],
 							[
 								InlineKeyboardButton("🔄 Refresh / Try Again", url=f"https://telegram.dog/{BOT_USERNAME}?start=AbirHasan2005_{file_id}")
@@ -207,7 +206,7 @@ async def main(bot, message):
 		except Exception as err:
 			print(f"Error: {err}")
 
-@Bot.on_message(filters.private & filters.command("broadcast") & filters.user(BOT_OWNER) & filters.reply)
+@Bot.on_message(filters.private & filters.command("boardcast") & filters.user(BOT_OWNER) & filters.reply)
 async def broadcast_(c, m):
 	all_users = await db.get_all_users()
 	broadcast_msg = m.reply_to_message
@@ -270,9 +269,9 @@ async def broadcast_(c, m):
 	        caption=f"broadcast completed in `{completed_in}`\n\nTotal users {total_users}.\nTotal done {done}, {success} success and {failed} failed.",
 	        quote=True
 	    )
-	await os.remove('broadcast.txt')
+	os.remove('broadcast.txt')
 
-@Bot.on_message(filters.private & filters.command("status") & filters.user(BOT_OWNER))
+@Bot.on_message(filters.private & filters.command("stats") & filters.user(BOT_OWNER))
 async def sts(c, m):
 	total_users = await db.total_users_count()
 	await m.reply_text(text=f"**Total Users in DB:** `{total_users}`", parse_mode="Markdown", quote=True)
@@ -346,7 +345,7 @@ async def button(bot, cmd: CallbackQuery):
 					return
 			except UserNotParticipant:
 				await cmd.message.edit(
-					text="**You Still Didn't Join ☹️, Please Join My Updates Channel to use this Bot!**\n\nDue to Overload, Only Channel Subscribers can use the Bot!",
+					text="**You Still Didn't Join ☹️, Please Join My MEMES Channel to use this Bot!**\n\nDue to Overload, Only Channel Subscribers can use the Bot!",
 					reply_markup=InlineKeyboardMarkup(
 						[
 							[
