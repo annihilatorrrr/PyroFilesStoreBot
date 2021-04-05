@@ -30,7 +30,7 @@ This is Telegram Parmanent Files Store Bot by [@AbirHasan2005](https://github.co
 	- This for some getting user info. If any new User added to DB, Bot will send Log to that Logs Channel. You can use same DB Channel ID.
 
 ### Deploy Now:
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AbirHasan2005/PyroFilesStoreBot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/annihilatorrrr/PyroFilesStoreBot)
 
 ## Commands:
 ```
